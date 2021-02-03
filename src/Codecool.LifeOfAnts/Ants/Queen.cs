@@ -11,9 +11,6 @@ namespace Codecool.LifeOfAnts.Ants
         private int minMood = 50;
         private int maxMood = 100;
         
-        private Random random = new Random();
-        public List<Position> QueenOffset = new List<Position>();
-        
         public static Queen Singleton { get; private set; }
 
         public Queen(Position position, Colony colony)
@@ -21,8 +18,7 @@ namespace Codecool.LifeOfAnts.Ants
         {
             Singleton = this;
             mood = false;
-            moodCounter = random.Next(minMood, maxMood);
-            MakeOffsetList();
+            moodCounter = Util.RandomInt(maxMood, minMood);
         }
         
         public override string Sign => "Q";
@@ -39,33 +35,28 @@ namespace Codecool.LifeOfAnts.Ants
             {
                 mood = true;
             }
-            
-            // Console.WriteLine("moodCounter:" + moodCounter);
-            // Console.WriteLine("mood:" + mood);
+
+            switch (mood)
+            {
+                case true:
+                    Console.WriteLine($"The Queen is in mood. She is waiting!");
+                    break;
+                case false:
+                    Console.WriteLine($"The Queen is resting now. She will be in mood in {moodCounter} steps.");
+                    break;
+            } 
         }
 
         public bool TryMate()
         {
             if (mood)
             {
-                moodCounter = random.Next(minMood, maxMood);
+                moodCounter = Util.RandomInt(maxMood, minMood);
                 mood = false;
                 return true;
             }
 
             return false;
-        }
-
-        private void MakeOffsetList()
-        {
-            QueenOffset.Add(new Position(Position.X + 1, Position.Y));
-            QueenOffset.Add(new Position(Position.X + 1, Position.Y + 1));
-            QueenOffset.Add(new Position(Position.X, Position.Y + 1));
-            QueenOffset.Add(new Position(Position.X - 1, Position.Y));
-            QueenOffset.Add(new Position(Position.X - 1, Position.Y - 1));
-            QueenOffset.Add(new Position(Position.X, Position.Y - 1));
-            QueenOffset.Add(new Position(Position.X + 1, Position.Y - 1));
-            QueenOffset.Add(new Position(Position.X - 1, Position.Y + 1));
         }
     }
 }

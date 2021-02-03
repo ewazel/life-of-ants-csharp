@@ -4,23 +4,27 @@ using Codecool.LifeOfAnts.Utilities;
 
 namespace Codecool.LifeOfAnts.Ants
 {
-    public class Worker : Ant
+    public class Worker : RegularAnt
     {
-        public Worker(Position position, Colony colony) : base(position, colony)
+        public Worker(Position position, Colony colony) 
+            : base(position, colony)
         {
+            ChangeDirection();
         }
         
         public override string Sign => "W";
         public override ConsoleColor Color => ConsoleColor.Green;
-
-        public override void OnUpdate()
+        
+        protected override void ChangeDirection()
         {
             Array values = Enum.GetValues(typeof(Direction));
-            Random random = new Random();
-            Direction randomDirection = (Direction)values.GetValue(random.Next(values.Length));
-            // TODO: faker nugg
-            //var x = Faker.Enum<Direction>();
-            Move(randomDirection);
+            Direction = (Direction)values.GetValue(Util.RandomInt(values.Length));
+        }
+        
+        public override void OnUpdate()
+        {
+            Move();
+            ChangeDirection();
         }
     }
 }

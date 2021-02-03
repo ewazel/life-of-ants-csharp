@@ -1,5 +1,6 @@
 ﻿using System;
 using Codecool.LifeOfAnts.Ants;
+using Codecool.LifeOfAnts.Utilities;
 
 namespace Codecool.LifeOfAnts
 {
@@ -16,13 +17,12 @@ namespace Codecool.LifeOfAnts
             Console.WriteLine("Hello, Ants!");
 
             int minSize = 20;
-            int maxSize = 40;
+            int maxSize = 30;
             int maxAmountOfSoldiers = 20;
             int maxAmountOfWorkers = 20;
-            int maxAmountOfDrones = 20;
+            int maxAmountOfDrones = 10;
 
-            Random random = new Random();
-            Colony colony = new Colony(random.Next(minSize, maxSize), random.Next(maxAmountOfSoldiers), random.Next(maxAmountOfDrones), random.Next(maxAmountOfWorkers));
+            Colony colony = new Colony(Util.RandomInt(maxSize, minSize), Util.RandomInt(maxAmountOfSoldiers), Util.RandomInt(maxAmountOfDrones), Util.RandomInt(maxAmountOfWorkers));
             colony.Display();
             
             Console.WriteLine("Press ENTER to update simulation or Q to stop it...");

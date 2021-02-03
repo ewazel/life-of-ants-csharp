@@ -3,34 +3,31 @@ using Codecool.LifeOfAnts.Utilities;
 
 namespace Codecool.LifeOfAnts.Ants
 {
-    public class Soldier : Ant
+    public class Soldier : RegularAnt
     {
-        public override string Sign => "S";
-        public override ConsoleColor Color => ConsoleColor.Red;
-
-
-        private Direction direction;
-
         public Soldier(Position position, Colony colony) 
             : base(position, colony)
         {
-            direction = Direction.North;
+            Direction = Direction.North;
         }
         
+        public override string Sign => "S";
+        public override ConsoleColor Color => ConsoleColor.Red;
+
         public override void OnUpdate()
         {
-            Move(direction);
+            Move();
             ChangeDirection();
         }
 
-        private void ChangeDirection()
+        protected override void ChangeDirection()
         {
-            direction = ChooseDirection();
+            Direction = ChooseDirection();
         }
         
         private Direction ChooseDirection()
         {
-            switch (direction)
+            switch (Direction)
             {
                 case Direction.North:
                     return Direction.West;
@@ -41,7 +38,7 @@ namespace Codecool.LifeOfAnts.Ants
                 case Direction.East:
                     return Direction.North;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+                    throw new ArgumentOutOfRangeException(nameof(Direction), Direction, null);
             }
         }
     }
