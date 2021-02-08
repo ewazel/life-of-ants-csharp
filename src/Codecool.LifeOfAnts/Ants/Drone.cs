@@ -86,7 +86,7 @@ namespace Codecool.LifeOfAnts.Ants
         
         private bool TryToMate()
         {
-            bool successfulMating = Queen.Singleton.TryMate();
+            bool successfulMating = Queen.Singleton.AllowToMate();
             if (successfulMating)
             {
                 _matingTime = 10;

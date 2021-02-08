@@ -43,7 +43,7 @@ namespace Codecool.LifeOfAnts.Ants
             } 
         }
 
-        public bool TryMate()
+        public bool AllowToMate()
         {
             if (_mood)
             {
