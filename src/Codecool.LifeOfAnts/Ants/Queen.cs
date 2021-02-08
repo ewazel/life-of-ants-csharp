@@ -9,7 +9,7 @@ namespace Codecool.LifeOfAnts.Ants
         private const int MinMood = 50;
         private const int MaxMood = 100;
         
-        private bool _mood;
+        private bool _mood => _moodCounter == 0;
         private int _moodCounter;
 
         public static Queen Singleton { get; private set; }
@@ -18,7 +18,7 @@ namespace Codecool.LifeOfAnts.Ants
             : base(position, colony)
         {
             Singleton = this;
-            _mood = false;
+            // _mood = false;
             _moodCounter = Util.Random.Next(MinMood, MaxMood);
         }
         
@@ -32,10 +32,10 @@ namespace Codecool.LifeOfAnts.Ants
             {
                 _moodCounter--;
             }
-            else if (_moodCounter == 0)
-            {
-                _mood = true;
-            }
+            // else if (_moodCounter == 0)
+            // {
+            //     _mood = true;
+            // }
 
             switch (_mood)
             {
@@ -53,7 +53,6 @@ namespace Codecool.LifeOfAnts.Ants
             if (_mood)
             {
                 _moodCounter = Util.Random.Next(MinMood, MaxMood);
-                _mood = false;
                 return true;
             }
 

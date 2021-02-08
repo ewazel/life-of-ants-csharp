@@ -12,11 +12,12 @@ namespace Codecool.LifeOfAnts
     {
         public readonly int Width;
         private List<Ant> listOfAnts = new List<Ant>();
+        private Queen queen;
 
         public Colony(int width, int amountOfSoldiers, int amountOfDrones, int amountOfWorkers)
         {
             Width = width;
-            Ant queen = new Queen(new Position(Width / 2, Width / 2), this);
+            queen = new Queen(new Position(Width / 2, Width / 2), this);
             listOfAnts.Add(queen);
             GenerateRegularAnts<Soldier>(amountOfSoldiers);
             GenerateRegularAnts<Drone>(amountOfDrones);
@@ -48,7 +49,7 @@ namespace Codecool.LifeOfAnts
             {
                 for (var x = 0; x <= Width - 1; x++)
                 {
-                    var presentAnt = IsAnt(new Position(x, y));
+                    var presentAnt = AntAtPosition(new Position(x, y));
                     if (presentAnt != null)
                     {
                         Console.ForegroundColor = presentAnt.Color;
@@ -78,7 +79,7 @@ namespace Codecool.LifeOfAnts
             }
         }
 
-        private Ant? IsAnt(Position position)
+        private Ant? AntAtPosition(Position position)
         {
             foreach (var ant in listOfAnts)
             {

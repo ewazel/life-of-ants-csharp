@@ -18,7 +18,11 @@ namespace Codecool.LifeOfAnts.Ants
         protected sealed override void ChangeDirection()
         {
             Array values = Enum.GetValues(typeof(Direction));
-            direction = (Direction)values.GetValue(Util.Random.Next(values.Length));
+            var nextDirection = values.GetValue(Util.Random.Next(values.Length));
+            if (nextDirection != null)
+            {
+                direction = (Direction)nextDirection;
+            }
         }
         
         public override void OnUpdate()
