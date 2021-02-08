@@ -18,7 +18,6 @@ namespace Codecool.LifeOfAnts.Ants
             : base(position, colony)
         {
             Singleton = this;
-            // _mood = false;
             _moodCounter = Util.Random.Next(MinMood, MaxMood);
         }
         
@@ -32,15 +31,11 @@ namespace Codecool.LifeOfAnts.Ants
             {
                 _moodCounter--;
             }
-            // else if (_moodCounter == 0)
-            // {
-            //     _mood = true;
-            // }
 
             switch (_mood)
             {
                 case true:
-                    Console.WriteLine($"The Queen is in mood. She is waiting!");
+                    Console.WriteLine("The Queen is in mood. She is waiting!");
                     break;
                 case false:
                     Console.WriteLine($"The Queen is resting now. She will be in mood in {_moodCounter} steps.");
