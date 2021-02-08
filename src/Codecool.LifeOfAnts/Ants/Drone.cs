@@ -67,20 +67,20 @@ namespace Codecool.LifeOfAnts.Ants
 
         private void KickOff()
         {
-            var borderList = new List<int> { 0, colony.Width};
-            int X = Util.Random.Next(colony.Width + 1);
-            int Y;
-            if (borderList.Contains(X))
+            var borderList = new List<int> { 0, colony.Width - 1 };
+            int x = Util.Random.Next(colony.Width);
+            int y;
+            if (borderList.Contains(x))
             {
-                Y = Util.Random.Next(colony.Width + 1);
+                y = Util.Random.Next(colony.Width);
             }
             else
             {
                 int index = Util.Random.Next(borderList.Count);
-                Y = borderList[index];
+                y = borderList[index];
             }
             
-            Position newPosition = new Position(X, Y);
+            Position newPosition = new Position(x, y);
             Position = newPosition;
         }
         

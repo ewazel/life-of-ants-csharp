@@ -15,7 +15,7 @@ namespace Codecool.LifeOfAnts
 
         public Colony(int width, int amountOfSoldiers, int amountOfDrones, int amountOfWorkers)
         {
-            Width = width - 1;
+            Width = width;
             Ant queen = new Queen(new Position(Width / 2, Width / 2), this);
             listOfAnts.Add(queen);
             GenerateRegularAnts<Soldier>(amountOfSoldiers);
@@ -26,7 +26,7 @@ namespace Codecool.LifeOfAnts
         public bool ValidPosition(Position position)
         {
             Position topLeft = new Position(0, 0);
-            Position bottomRight = new Position(Width, Width);
+            Position bottomRight = new Position(Width - 1, Width - 1);
 
             return position.X >= topLeft.X && position.X <= bottomRight.X && position.Y >= topLeft.Y &&
                    position.Y <= bottomRight.Y;
@@ -44,9 +44,9 @@ namespace Codecool.LifeOfAnts
         
         public void Display()
         {
-            for (var y = 0; y <= Width; y++)
+            for (var y = 0; y <= Width - 1; y++)
             {
-                for (var x = 0; x <= Width; x++)
+                for (var x = 0; x <= Width - 1; x++)
                 {
                     var presentAnt = IsAnt(new Position(x, y));
                     if (presentAnt != null)
