@@ -69,9 +69,12 @@ namespace Codecool.LifeOfAnts
         {
             for (int i = 0; i < amountOfAnts; i++)
             {
-                Position randomPosition = new Position(Util.RandomInt(Width), Util.RandomInt(Width));
-                var ant = Activator.CreateInstance(typeof(T), new object[] { randomPosition, this }) as T;
-                listOfAnts.Add(ant);
+                var randomPosition = new Position(Util.Random.Next(Width), Util.Random.Next(Width));
+                if (Activator.CreateInstance(typeof(T), new object[] { randomPosition, this }) is T ant)
+                {
+                    listOfAnts.Add(ant);
+                }
+                
             }
         }
 

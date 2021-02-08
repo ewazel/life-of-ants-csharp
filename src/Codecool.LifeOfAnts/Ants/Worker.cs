@@ -15,10 +15,10 @@ namespace Codecool.LifeOfAnts.Ants
         public override string Sign => "W";
         public override ConsoleColor Color => ConsoleColor.Green;
         
-        protected override void ChangeDirection()
+        protected sealed override void ChangeDirection()
         {
             Array values = Enum.GetValues(typeof(Direction));
-            Direction = (Direction)values.GetValue(Util.RandomInt(values.Length));
+            direction = (Direction)values.GetValue(Util.Random.Next(values.Length));
         }
         
         public override void OnUpdate()

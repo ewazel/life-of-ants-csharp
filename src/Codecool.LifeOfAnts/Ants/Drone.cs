@@ -6,12 +6,12 @@ namespace Codecool.LifeOfAnts.Ants
 {
     public class Drone : RegularAnt
     {
-        private int MatingTime;
+        private int _matingTime;
 
         public Drone(Position position, Colony colony)
             : base(position, colony)
         {
-            MatingTime = 0;
+            _matingTime = 0;
             ChangeDirection();
         }
         public override string Sign => "D";
@@ -22,14 +22,14 @@ namespace Codecool.LifeOfAnts.Ants
         {
             if (CheckIfNextToQueen())
             {
-                if (MatingTime == 0 && !TryToMate())
+                if (_matingTime == 0 && !TryToMate())
                 {
                     KickOff();
                 }
                 
-                if (MatingTime > 0)
+                if (_matingTime > 0)
                 {
-                    MatingTime--;
+                    _matingTime--;
                 }
             }
             else
@@ -39,23 +39,23 @@ namespace Codecool.LifeOfAnts.Ants
             }
         }
         
-        protected override void ChangeDirection()
+        protected sealed override void ChangeDirection()
         {
             if (Position.X < Queen.Singleton.Position.X)
             {
-                Direction = Direction.East;
+                direction = Direction.East;
             }
             else if (Position.X > Queen.Singleton.Position.X)
             {
-                Direction = Direction.West;
+                direction = Direction.West;
             }
             else if (Position.Y < Queen.Singleton.Position.Y)
             {
-                Direction = Direction.South;
+                direction = Direction.South;
             }
             else
             {
-                Direction = Direction.North;
+                direction = Direction.North;
             }
         }
         
@@ -67,16 +67,16 @@ namespace Codecool.LifeOfAnts.Ants
 
         private void KickOff()
         {
-            var borderList = new List<int> { 0, Colony.Width};
-            int X = Util.RandomInt(Colony.Width + 1);
+            var borderList = new List<int> { 0, colony.Width};
+            int X = Util.Random.Next(colony.Width + 1);
             int Y;
             if (borderList.Contains(X))
             {
-                Y = Util.RandomInt(Colony.Width + 1);
+                Y = Util.Random.Next(colony.Width + 1);
             }
             else
             {
-                int index = Util.RandomInt(borderList.Count);
+                int index = Util.Random.Next(borderList.Count);
                 Y = borderList[index];
             }
             
@@ -86,10 +86,10 @@ namespace Codecool.LifeOfAnts.Ants
         
         private bool TryToMate()
         {
-            bool succesfulMating = Queen.Singleton.TryMate();
-            if (succesfulMating)
+            bool successfulMating = Queen.Singleton.TryMate();
+            if (successfulMating)
             {
-                MatingTime = 10;
+                _matingTime = 10;
                 Console.WriteLine("Drone: HURRRRRAY! I did it!");
                 return true;
             }

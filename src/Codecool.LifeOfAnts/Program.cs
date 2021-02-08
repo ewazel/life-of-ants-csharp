@@ -22,7 +22,7 @@ namespace Codecool.LifeOfAnts
             int maxAmountOfWorkers = 20;
             int maxAmountOfDrones = 10;
 
-            Colony colony = new Colony(Util.RandomInt(maxSize, minSize), Util.RandomInt(maxAmountOfSoldiers), Util.RandomInt(maxAmountOfDrones), Util.RandomInt(maxAmountOfWorkers));
+            Colony colony = new Colony(Util.Random.Next(minSize, maxSize + 1), Util.Random.Next(maxAmountOfSoldiers + 1), Util.Random.Next(maxAmountOfDrones + 1), Util.Random.Next(maxAmountOfWorkers + 1));
             colony.Display();
             
             Console.WriteLine("Press ENTER to update simulation or Q to stop it...");

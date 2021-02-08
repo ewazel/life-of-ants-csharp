@@ -8,7 +8,7 @@ namespace Codecool.LifeOfAnts.Ants
         public Soldier(Position position, Colony colony) 
             : base(position, colony)
         {
-            Direction = Direction.North;
+            direction = Direction.North;
         }
         
         public override string Sign => "S";
@@ -22,12 +22,12 @@ namespace Codecool.LifeOfAnts.Ants
 
         protected override void ChangeDirection()
         {
-            Direction = ChooseDirection();
+            direction = ChooseDirection();
         }
         
         private Direction ChooseDirection()
         {
-            switch (Direction)
+            switch (direction)
             {
                 case Direction.North:
                     return Direction.West;
@@ -38,7 +38,7 @@ namespace Codecool.LifeOfAnts.Ants
                 case Direction.East:
                     return Direction.North;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(Direction), Direction, null);
+                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
             }
         }
     }

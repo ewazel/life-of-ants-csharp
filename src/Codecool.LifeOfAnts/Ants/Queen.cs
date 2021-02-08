@@ -6,19 +6,20 @@ namespace Codecool.LifeOfAnts.Ants
 {
     public class Queen : Ant
     {
-        private bool mood;
-        private int moodCounter;
-        private int minMood = 50;
-        private int maxMood = 100;
+        private const int MinMood = 50;
+        private const int MaxMood = 100;
         
+        private bool _mood;
+        private int _moodCounter;
+
         public static Queen Singleton { get; private set; }
 
         public Queen(Position position, Colony colony)
             : base(position, colony)
         {
             Singleton = this;
-            mood = false;
-            moodCounter = Util.RandomInt(maxMood, minMood);
+            _mood = false;
+            _moodCounter = Util.Random.Next(MinMood, MaxMood);
         }
         
         public override string Sign => "Q";
@@ -27,32 +28,32 @@ namespace Codecool.LifeOfAnts.Ants
 
         public override void OnUpdate()
         {
-            if (moodCounter > 0)
+            if (_moodCounter > 0)
             {
-                moodCounter--;
+                _moodCounter--;
             }
-            else if (moodCounter == 0)
+            else if (_moodCounter == 0)
             {
-                mood = true;
+                _mood = true;
             }
 
-            switch (mood)
+            switch (_mood)
             {
                 case true:
                     Console.WriteLine($"The Queen is in mood. She is waiting!");
                     break;
                 case false:
-                    Console.WriteLine($"The Queen is resting now. She will be in mood in {moodCounter} steps.");
+                    Console.WriteLine($"The Queen is resting now. She will be in mood in {_moodCounter} steps.");
                     break;
             } 
         }
 
         public bool TryMate()
         {
-            if (mood)
+            if (_mood)
             {
-                moodCounter = Util.RandomInt(maxMood, minMood);
-                mood = false;
+                _moodCounter = Util.Random.Next(MinMood, MaxMood);
+                _mood = false;
                 return true;
             }
 

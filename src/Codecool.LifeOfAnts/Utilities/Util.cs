@@ -4,6 +4,8 @@ namespace Codecool.LifeOfAnts.Utilities
 {
     public static class Util
     {
+        public static readonly Random Random = new Random();
+
         /// <summary>
         /// changes enum direction into vector (X,Y)
         /// </summary>
@@ -25,18 +27,6 @@ namespace Codecool.LifeOfAnts.Utilities
                 default:
                     throw new ArgumentOutOfRangeException(nameof(dir), dir, null);
             }
-        }
-        
-        /// <summary>
-        /// Returns random int within given limits
-        /// </summary>
-        /// <param name="max">max limit</param>
-        /// <param name="min">min limit</param>
-        /// <returns></returns>
-        public static int RandomInt(int max, int min = 0)
-        {
-            Random random = new Random();
-            return random.Next(min, max);
         }
     }
 }
