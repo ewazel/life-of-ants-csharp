@@ -1,5 +1,14 @@
 # Life of the Ants
 
+![start](printscreens/start.png)
+
+![queen not in mood](printscreens/queen_not_in_mood.png)
+
+![dron failed](printscreens/dron_failed.png)
+
+![drone happy](printscreens/drone_happy.png)
+
+
 ## Story
 
 In an ant colony there are four different castes: _workers_, _soldiers_, _drones_, and there is one _queen_. The colony area is square (has a width), and the ants live and move within the borders of the colony.
